@@ -87,6 +87,7 @@ def lightcurve_mcmc(lc, model, priors=None, p_min=None, p_max=None, p_lo=None, p
             ax1[i].set_ylabel(model.axis_labels[i])
         ax1[0].set_title('During Burn In')
         ax1[-1].set_xlabel('Step Number')
+        plt.savefig('sampler_preburnin.png',dpi=200,bbox_inches='tight')
 
     sampler.reset()
     sampler.run_mcmc(pos, nsteps)
@@ -97,6 +98,7 @@ def lightcurve_mcmc(lc, model, priors=None, p_min=None, p_max=None, p_lo=None, p
             ax2[i].set_ylabel(model.axis_labels[i])
         ax2[0].set_title('After Burn In')
         ax2[-1].set_xlabel('Step Number')
+        plt.savefig('sampler_postburnin.png',dpi=200,bbox_inches='tight')
 
     if save_sampler_as:
         np.save(save_sampler_as, sampler.flatchain)
